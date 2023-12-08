@@ -1,134 +1,126 @@
 import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
 
-// Remember to rename these classes and interfaces!
+export default class PinyinReplacer extends Plugin{
 
-interface MyPluginSettings {
-	mySetting: string;
-}
+	async onload(){
+		console.log('loading in pinyin replacer');
+		
+		const sBItem = this.addStatusBarItem().createEl("span");
+		sBItem.createEl("span", {text: "ā á ǎ à"});
 
-const DEFAULT_SETTINGS: MyPluginSettings = {
-	mySetting: 'default'
-}
-
-export default class MyPlugin extends Plugin {
-	settings: MyPluginSettings;
-
-	async onload() {
-		await this.loadSettings();
-
-		// This creates an icon in the left ribbon.
-		const ribbonIconEl = this.addRibbonIcon('dice', 'Sample Plugin', (evt: MouseEvent) => {
-			// Called when the user clicks the icon.
-			new Notice('This is a notice!');
-		});
-		// Perform additional things with the ribbon
-		ribbonIconEl.addClass('my-plugin-ribbon-class');
-
-		// This adds a status bar item to the bottom of the app. Does not work on mobile apps.
-		const statusBarItemEl = this.addStatusBarItem();
-		statusBarItemEl.setText('Status Bar Text');
-
-		// This adds a simple command that can be triggered anywhere
 		this.addCommand({
-			id: 'open-sample-modal-simple',
-			name: 'Open sample modal (simple)',
-			callback: () => {
-				new SampleModal(this.app).open();
-			}
-		});
-		// This adds an editor command that can perform some operation on the current editor instance
-		this.addCommand({
-			id: 'sample-editor-command',
-			name: 'Sample editor command',
+			id: "replace-first-tone",
+			name: "Replace first tone",
+			hotkeys: [{modifiers: ["Alt"], key: "1"}],
 			editorCallback: (editor: Editor, view: MarkdownView) => {
-				console.log(editor.getSelection());
-				editor.replaceSelection('Sample Editor Command');
-			}
-		});
-		// This adds a complex command that can check whether the current state of the app allows execution of the command
-		this.addCommand({
-			id: 'open-sample-modal-complex',
-			name: 'Open sample modal (complex)',
-			checkCallback: (checking: boolean) => {
-				// Conditions to check
-				const markdownView = this.app.workspace.getActiveViewOfType(MarkdownView);
-				if (markdownView) {
-					// If checking is true, we're simply "checking" if the command can be run.
-					// If checking is false, then we want to actually perform the operation.
-					if (!checking) {
-						new SampleModal(this.app).open();
-					}
+				const lastChar = this.getCharacterBeforeCursor(editor);
+				const vowelIndex = this.vowelToNumber(lastChar);
 
-					// This command will only show up in Command Palette when the check function returns true
-					return true;
+				if(vowelIndex !== -1){
+					const pinyingTone = this.findPinYingTone(0, vowelIndex);
+					const cursorPos = editor.getCursor()
+					if(cursorPos.ch){
+						editor.replaceRange(pinyingTone, {line: cursorPos.line, ch: cursorPos.ch-1}, cursorPos);
+					}else{
+						editor.replaceRange(pinyingTone, cursorPos, {line: cursorPos.line, ch: cursorPos.ch+1});
+					}
 				}
 			}
 		});
 
-		// This adds a settings tab so the user can configure various aspects of the plugin
-		this.addSettingTab(new SampleSettingTab(this.app, this));
+		this.addCommand({
+			id: "replace-second-tone",
+			name: "Replace second tone",
+			hotkeys: [{modifiers: ["Alt"], key: "2"}],
+			editorCallback: (editor: Editor, view: MarkdownView) => {
+				const lastChar = this.getCharacterBeforeCursor(editor);
+				const vowelIndex = this.vowelToNumber(lastChar);
 
-		// If the plugin hooks up any global DOM events (on parts of the app that doesn't belong to this plugin)
-		// Using this function will automatically remove the event listener when this plugin is disabled.
-		this.registerDomEvent(document, 'click', (evt: MouseEvent) => {
-			console.log('click', evt);
+				if(vowelIndex !== -1){
+					const pinyingTone = this.findPinYingTone(1, vowelIndex);
+					const cursorPos = editor.getCursor()
+					if(cursorPos.ch){
+						editor.replaceRange(pinyingTone, {line: cursorPos.line, ch: cursorPos.ch-1}, cursorPos);
+					}else{
+						editor.replaceRange(pinyingTone, cursorPos, {line: cursorPos.line, ch: cursorPos.ch+1});
+					}
+				}
+			}
 		});
 
-		// When registering intervals, this function will automatically clear the interval when the plugin is disabled.
-		this.registerInterval(window.setInterval(() => console.log('setInterval'), 5 * 60 * 1000));
+		this.addCommand({
+			id: "replace-third-tone",
+			name: "Replace third tone",
+			hotkeys: [{modifiers: ["Alt"], key: "3"}],
+			editorCallback: (editor: Editor, view: MarkdownView) => {
+				const lastChar = this.getCharacterBeforeCursor(editor);
+				const vowelIndex = this.vowelToNumber(lastChar);
+
+				if(vowelIndex !== -1){
+					const pinyingTone = this.findPinYingTone(2, vowelIndex);
+					const cursorPos = editor.getCursor()
+					if(cursorPos.ch){
+						editor.replaceRange(pinyingTone, {line: cursorPos.line, ch: cursorPos.ch-1}, cursorPos);
+					}else{
+						editor.replaceRange(pinyingTone, cursorPos, {line: cursorPos.line, ch: cursorPos.ch+1});
+					}
+				}
+			}
+		});
+
+		this.addCommand({
+			id: "replace-fourth-tone",
+			name: "Replace fourth tone",
+			hotkeys: [{modifiers: ["Alt"], key: "4"}],
+			editorCallback: (editor: Editor, view: MarkdownView) => {
+				const lastChar = this.getCharacterBeforeCursor(editor);
+				const vowelIndex = this.vowelToNumber(lastChar);
+
+				if(vowelIndex !== -1){
+					const pinyingTone = this.findPinYingTone(3, vowelIndex);
+					const cursorPos = editor.getCursor()
+					if(cursorPos.ch){
+						editor.replaceRange(pinyingTone, {line: cursorPos.line, ch: cursorPos.ch-1}, cursorPos);
+					}else{
+						editor.replaceRange(pinyingTone, cursorPos, {line: cursorPos.line, ch: cursorPos.ch+1});
+					}
+				}
+			}
+		});
+
 	}
 
-	onunload() {
+	async onunload(){
+		console.log('unloading in pinyin replacer');
 
 	}
 
-	async loadSettings() {
-		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+	private getCharacterBeforeCursor(editor: Editor){
+		const lines = editor.getValue().split(/\r\n|\n|\r/);
+		const cursor = editor.getCursor();
+		let lastChar;
+		if(cursor.ch > 0){
+			lastChar = lines[cursor.line][cursor.ch-1];
+		}else{
+			lastChar = lines[cursor.line][cursor.ch];
+		}
+		return lastChar;
+	}
+	
+	private vowelToNumber(vowel: string){
+		const vowels = ['a', 'e' , 'i', 'o', 'u'];
+		const index = vowels.indexOf(vowel.toLowerCase());
+		return index;
 	}
 
-	async saveSettings() {
-		await this.saveData(this.settings);
+	private findPinYingTone(tone: number, vowelIndex: number){
+		const tones = [["ā", "á", "ǎ", "à"],
+						["ē", "é", "ě", "è"],
+						["ī", "í", "ǐ", "ì"],
+						["ō", "ó", "ǒ", "ò"],
+						["ū", "ú", "ǔ", "ù"]];
+
+		return tones[vowelIndex][tone];
 	}
-}
-
-class SampleModal extends Modal {
-	constructor(app: App) {
-		super(app);
-	}
-
-	onOpen() {
-		const {contentEl} = this;
-		contentEl.setText('Woah!');
-	}
-
-	onClose() {
-		const {contentEl} = this;
-		contentEl.empty();
-	}
-}
-
-class SampleSettingTab extends PluginSettingTab {
-	plugin: MyPlugin;
-
-	constructor(app: App, plugin: MyPlugin) {
-		super(app, plugin);
-		this.plugin = plugin;
-	}
-
-	display(): void {
-		const {containerEl} = this;
-
-		containerEl.empty();
-
-		new Setting(containerEl)
-			.setName('Setting #1')
-			.setDesc('It\'s a secret')
-			.addText(text => text
-				.setPlaceholder('Enter your secret')
-				.setValue(this.plugin.settings.mySetting)
-				.onChange(async (value) => {
-					this.plugin.settings.mySetting = value;
-					await this.plugin.saveSettings();
-				}));
-	}
+	
 }

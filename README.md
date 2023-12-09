@@ -41,5 +41,5 @@ From Obsidian v0.9.8+, you can activate this plugin within Obsidian by doing the
 
 If you wish, you can pay me a coffee by donating to my paypal!
 
-![paypal](https://www.paypal.com/paypalme/janLa69)
+[![Paypal](https://img.shields.io/badge/paypal-janLa69-yellow?style=social&logo=paypal)](https://www.paypal.com/paypalme/janLa69)
 

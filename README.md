@@ -23,7 +23,7 @@ To replace the vowel with its "toned" version, 4 commands/hotkeys have been adde
 
 Adds a status bar item to the status bar to remind you the order of the tones.
 
-![](https://github.com/LarrySAL/pinyin-replacer/resources/Status_bar_item.PNG)
+![](https://github.com/LarrySAL/pinyin-replacer/blob/master/resources/Status_bar_item.PNG)
 
 ## How to Install
 ### From within Obsidian

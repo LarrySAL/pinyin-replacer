@@ -6,7 +6,7 @@ Adds 4 commands which will replace the vowel behind your cursor into it's "toned
 
 ## Demo
 
-![](https://github.com/LarrySAL/pinyin-replacer/resources/show_replacement.gif)
+![](https://github.com/LarrySAL/pinyin-replacer/blob/master/resources/show_replacement.gif)
 
 ## How to use
 

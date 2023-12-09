@@ -1,11 +1,11 @@
 {
 	"id": "pinyin_replacer",
-	"name": "Pinyin Replacer 1.0.0",
+	"name": "Pinyin Replacer",
 	"version": "1.0.0",
 	"minAppVersion": "0.15.0",
 	"description": "Simple plugin to use the pinyin tones in obsidian without having to install extra keyboard layouts.",
-	"author": "Obsidian",
+	"author": "LarrySAL",
 	"authorUrl": "https://obsidian.md",
-	"fundingUrl": "https://obsidian.md/pricing",
-	"isDesktopOnly": false
+	"fundingUrl": "https://www.paypal.com/paypalme/janLa69",
+	"isDesktopOnly": true
 }

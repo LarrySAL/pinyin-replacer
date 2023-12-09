@@ -1,7 +1,6 @@
 # Pinyin Replacer Plugin
 
-Allows you to take pinyin notes whitout having to install another Keyboard
-Layout.
+Allows you to take pinyin notes whitout having to install another keyboard layout.
 
 Adds 4 commands which will replace the vowel behind your cursor into it's "toned" version.
 
@@ -37,3 +36,10 @@ From Obsidian v0.9.8+, you can activate this plugin within Obsidian by doing the
 - Search for "pinyin replacer"
 - Click Install
 - Once installed, close the community plugins window and activate the newly installed plugin
+
+## Funding
+
+If you wish, you can pay me a coffee by donating to my paypal!
+
+![paypal](https://www.paypal.com/paypalme/janLa69)
+

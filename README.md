@@ -14,10 +14,10 @@ To replace the vowel with its "toned" version, 4 commands/hotkeys have been adde
 
 | Command Name        | Shortcut |
 | ------------------- | -------- |
-| Replace first tone  | ALT + 1  |
-| Replace second tone | ALT + 2  |
-| Replace third tone  | ALT + 3  |
-| Replace fourth tone | ALT + 4  |
+| Replace first tone  | "ALT" + "1"  |
+| Replace second tone | "ALT" + "2"  |
+| Replace third tone  | "ALT" + "3"  |
+| Replace fourth tone | "ALT" + "4"  |
 
 ## Additional features
 

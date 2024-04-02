@@ -108,7 +108,7 @@ export default class PinyinReplacer extends Plugin{
 	}
 	
 	private vowelToNumber(vowel: string){
-		const vowels = ['a', 'e' , 'i', 'o', 'u'];
+		const vowels = ['a', 'e' , 'i', 'o', 'u', 'v'];
 		const index = vowels.indexOf(vowel.toLowerCase());
 		return index;
 	}
@@ -118,7 +118,8 @@ export default class PinyinReplacer extends Plugin{
 						["ē", "é", "ě", "è"],
 						["ī", "í", "ǐ", "ì"],
 						["ō", "ó", "ǒ", "ò"],
-						["ū", "ú", "ǔ", "ù"]];
+						["ū", "ú", "ǔ", "ù"],
+						["ǖ", "ǘ", "ǚ", "ǜ"]];
 
 		return tones[vowelIndex][tone];
 	}

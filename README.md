@@ -4,6 +4,18 @@ Allows you to take pinyin notes whitout having to install another keyboard layou
 
 Adds 4 commands which will replace the vowel behind your cursor into it's "toned" version.
 
+## How to Install
+### From within Obsidian
+
+From Obsidian v0.9.8+, you can activate this plugin within Obsidian by doing the following:
+
+- Open Settings > Community plugin
+- Make sure Safe mode is off
+- Click Browse community plugins
+- Search for "pinyin replacer"
+- Click Install
+- Once installed, close the community plugins window and activate the newly installed plugin
+
 ## Demo
 
 ![](https://github.com/LarrySAL/pinyin-replacer/blob/master/resources/show_replacement.gif)
@@ -19,23 +31,13 @@ To replace the vowel with its "toned" version, 4 commands/hotkeys have been adde
 | Replace third tone  | "ALT" + "3"  |
 | Replace fourth tone | "ALT" + "4"  |
 
+The letter "v" can be used to produce the "ǖ", "ǘ", "ǚ", "ǜ" tones the same way as it works with the vowels. (credit:@VishalJagan)
+
 ## Additional features
 
 Adds a status bar item to the status bar to remind you the order of the tones.
 
 ![](https://github.com/LarrySAL/pinyin-replacer/blob/master/resources/Status_bar_item.PNG)
-
-## How to Install
-### From within Obsidian
-
-From Obsidian v0.9.8+, you can activate this plugin within Obsidian by doing the following:
-
-- Open Settings > Community plugin
-- Make sure Safe mode is off
-- Click Browse community plugins
-- Search for "pinyin replacer"
-- Click Install
-- Once installed, close the community plugins window and activate the newly installed plugin
 
 ## Funding
 

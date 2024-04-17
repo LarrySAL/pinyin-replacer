@@ -1,6 +1,6 @@
 # Pinyin Replacer Plugin
 
-Allows you to take pinyin notes whitout having to install another keyboard layout.
+Allows you to take pinyin notes without having to install another keyboard layout.
 
 Adds 4 commands which will replace the vowel behind your cursor into it's "toned" version.
 

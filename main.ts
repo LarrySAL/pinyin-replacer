@@ -74,10 +74,10 @@ export default class PinyinReplacer extends Plugin{
 	
 	private replaceTone(tone: number, editor: Editor){
 		const lastChar = this.getCharacterBeforeCursor(editor);
-		const vowelIndex = this.withVowels((vowels) => vowels.findIndex(row => row.includes(lastChar.toLowerCase())));
+		const vowelIndex = this.vowelMatrix.findIndex(row => row.includes(lastChar.toLowerCase()));
 
-		if(vowelIndex !== undefined){
-			const pinyingTone = this.withVowels(vowels => vowels[vowelIndex][tone]);
+		if(vowelIndex !== -1){
+			const pinyingTone = this.vowelMatrix[vowelIndex][tone];
 			const cursorPos = editor.getCursor()
 			if(cursorPos.ch){
 				editor.replaceRange(pinyingTone, {line: cursorPos.line, ch: cursorPos.ch-1}, cursorPos);
@@ -85,10 +85,6 @@ export default class PinyinReplacer extends Plugin{
 				editor.replaceRange(pinyingTone, cursorPos, {line: cursorPos.line, ch: cursorPos.ch+1});
 			}	
 		}
-	}
-
-	private withVowels<T>(op: (v: string[][]) => T): T {
-		return op(this.vowelMatrix);
 	}
 
 	private readonly vowelMatrix  = [

@@ -72,39 +72,12 @@ export default class PinyinReplacer extends Plugin{
 		return lastChar;
 	}
 	
-	private vowelToNumber(vowel: string){
-		const vowels = [
-			['a', 'ā', 'á', 'ǎ', 'à'],
-			['e', 'ē', 'é', 'ě', 'è'] , 
-			['i', 'ī', 'í', 'ǐ', 'ì'], 
-			['o', 'ō', 'ó', 'ǒ', 'ò'], 
-			['u', 'ū', 'ú', 'ǔ', 'ù'],
-		];
-		for(let i = 0; i < vowels.length; i++){
-			if(vowels[i].includes(vowel.toLowerCase())){
-				return i;
-			}
-		}
-	}
-
-	private findPinYingTone(tone: number, vowelIndex: number){
-		const tones = [
-			['a', 'ā', 'á', 'ǎ', 'à'],
-			['e', 'ē', 'é', 'ě', 'è'] , 
-			['i', 'ī', 'í', 'ǐ', 'ì'], 
-			['o', 'ō', 'ó', 'ǒ', 'ò'], 
-			['u', 'ū', 'ú', 'ǔ', 'ù'],
-		];
-
-		return tones[vowelIndex][tone];
-	}
-	
 	private replaceTone(tone: number, editor: Editor){
 		const lastChar = this.getCharacterBeforeCursor(editor);
-		const vowelIndex = this.vowelToNumber(lastChar);
+		const vowelIndex = this.withVowels((vowels) => vowels.findIndex(row => row.includes(lastChar.toLowerCase())));
 
 		if(vowelIndex !== undefined){
-			const pinyingTone = this.findPinYingTone(tone, vowelIndex);
+			const pinyingTone = this.withVowels(vowels => vowels[vowelIndex][tone]);
 			const cursorPos = editor.getCursor()
 			if(cursorPos.ch){
 				editor.replaceRange(pinyingTone, {line: cursorPos.line, ch: cursorPos.ch-1}, cursorPos);
@@ -113,5 +86,17 @@ export default class PinyinReplacer extends Plugin{
 			}	
 		}
 	}
+
+	private withVowels<T>(op: (v: string[][]) => T): T {
+		return op(this.vowelMatrix);
+	}
+
+	private readonly vowelMatrix  = [
+		['a', 'ā', 'á', 'ǎ', 'à'],
+		['e', 'ē', 'é', 'ě', 'è'] , 
+		['i', 'ī', 'í', 'ǐ', 'ì'], 
+		['o', 'ō', 'ó', 'ǒ', 'ò'], 
+		['u', 'ū', 'ú', 'ǔ', 'ù'],
+	];
 
 }

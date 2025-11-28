@@ -88,6 +88,26 @@ export default class PinyinReplacer extends Plugin{
 			}
 		});
 
+		this.addCommand({
+			id: "remove-tone",
+			name: "Remove tone",
+			hotkeys: [{modifiers: ["Alt"], key: "r"}],
+			editorCallback: (editor: Editor, view: MarkdownView) => {
+				const lastChar = this.getCharacterBeforeCursor(editor);
+				const vowelIndex = this.vowelToNumber(lastChar);
+
+				if(vowelIndex !== undefined){
+					const pinyingTone = this.findPinYingTone(4, vowelIndex);
+					const cursorPos = editor.getCursor()
+					if(cursorPos.ch){
+						editor.replaceRange(pinyingTone, {line: cursorPos.line, ch: cursorPos.ch-1}, cursorPos);
+					}else{
+						editor.replaceRange(pinyingTone, cursorPos, {line: cursorPos.line, ch: cursorPos.ch+1});
+					}
+				}
+			}
+		});
+
 	}
 
 	async onunload(){
@@ -123,11 +143,11 @@ export default class PinyinReplacer extends Plugin{
 	}
 
 	private findPinYingTone(tone: number, vowelIndex: number){
-		const tones = [["ā", "á", "ǎ", "à"],
-						["ē", "é", "ě", "è"],
-						["ī", "í", "ǐ", "ì"],
-						["ō", "ó", "ǒ", "ò"],
-						["ū", "ú", "ǔ", "ù"]];
+		const tones = [["ā", "á", "ǎ", "à", "a"],
+						["ē", "é", "ě", "è", "e"],
+						["ī", "í", "ǐ", "ì", "i"],
+						["ō", "ó", "ǒ", "ò", "o"],
+						["ū", "ú", "ǔ", "ù", "u"]];
 
 		return tones[vowelIndex][tone];
 	}

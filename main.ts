@@ -16,7 +16,7 @@ export default class PinyinReplacer extends Plugin{
 				const lastChar = this.getCharacterBeforeCursor(editor);
 				const vowelIndex = this.vowelToNumber(lastChar);
 
-				if(vowelIndex !== -1){
+				if(vowelIndex !== undefined){
 					const pinyingTone = this.findPinYingTone(0, vowelIndex);
 					const cursorPos = editor.getCursor()
 					if(cursorPos.ch){
@@ -36,7 +36,7 @@ export default class PinyinReplacer extends Plugin{
 				const lastChar = this.getCharacterBeforeCursor(editor);
 				const vowelIndex = this.vowelToNumber(lastChar);
 
-				if(vowelIndex !== -1){
+				if(vowelIndex !== undefined){
 					const pinyingTone = this.findPinYingTone(1, vowelIndex);
 					const cursorPos = editor.getCursor()
 					if(cursorPos.ch){
@@ -56,7 +56,7 @@ export default class PinyinReplacer extends Plugin{
 				const lastChar = this.getCharacterBeforeCursor(editor);
 				const vowelIndex = this.vowelToNumber(lastChar);
 
-				if(vowelIndex !== -1){
+				if(vowelIndex !== undefined){
 					const pinyingTone = this.findPinYingTone(2, vowelIndex);
 					const cursorPos = editor.getCursor()
 					if(cursorPos.ch){
@@ -76,7 +76,7 @@ export default class PinyinReplacer extends Plugin{
 				const lastChar = this.getCharacterBeforeCursor(editor);
 				const vowelIndex = this.vowelToNumber(lastChar);
 
-				if(vowelIndex !== -1){
+				if(vowelIndex !== undefined){
 					const pinyingTone = this.findPinYingTone(3, vowelIndex);
 					const cursorPos = editor.getCursor()
 					if(cursorPos.ch){
@@ -108,9 +108,18 @@ export default class PinyinReplacer extends Plugin{
 	}
 	
 	private vowelToNumber(vowel: string){
-		const vowels = ['a', 'e' , 'i', 'o', 'u'];
-		const index = vowels.indexOf(vowel.toLowerCase());
-		return index;
+		const vowels = [
+			['a', 'ā', 'á', 'ǎ', 'à'],
+			['e', 'ē', 'é', 'ě', 'è'] , 
+			['i', 'ī', 'í', 'ǐ', 'ì'], 
+			['o', 'ō', 'ó', 'ǒ', 'ò'], 
+			['u', 'ū', 'ú', 'ǔ', 'ù']
+		];
+		for(let i = 0; i < vowels.length; i++){
+			if(vowels[i].includes(vowel.toLowerCase())){
+				return i;
+			}
+		}
 	}
 
 	private findPinYingTone(tone: number, vowelIndex: number){

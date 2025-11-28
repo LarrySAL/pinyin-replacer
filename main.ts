@@ -1,4 +1,4 @@
-import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
+import { Editor, Plugin } from 'obsidian';
 
 export default class PinyinReplacer extends Plugin{
 

@@ -2,7 +2,7 @@
 
 Allows you to take pinyin notes without having to install another keyboard layout.
 
-Adds 4 commands which will replace the vowel behind your cursor into it's "toned" version.
+Adds 4 commands which will replace the vowel behind your cursor into it's "toned" version and 1 command which will remove the tone.
 
 ## How to Install
 ### From within Obsidian
@@ -30,6 +30,7 @@ To replace the vowel with its "toned" version, 4 commands/hotkeys have been adde
 | Replace second tone | "ALT" + "2"  |
 | Replace third tone  | "ALT" + "3"  |
 | Replace fourth tone | "ALT" + "4"  |
+| Remove tone         | "ALT" + "R"  |
 
 The letter "v" can be used to produce the "ǖ", "ǘ", "ǚ", "ǜ" tones the same way as it works with the vowels. (credit: [VishalJagan](https://github.com/VishalJagan))
 

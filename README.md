@@ -32,7 +32,11 @@ To replace the vowel with its "toned" version, 4 commands/hotkeys have been adde
 | Replace fourth tone | "ALT" + "4"  |
 | Remove tone         | "ALT" + "R"  |
 
-The letter "v" can be used to produce the "ǖ", "ǘ", "ǚ", "ǜ" tones the same way as it works with the vowels. (credit: [VishalJagan](https://github.com/VishalJagan))
+The letter "v" can be used to produce the "ǖ", "ǘ", "ǚ", "ǜ" tones the same way as it works with the vowels.
+
+## Further Credit
+- [VishalJagan](https://github.com/VishalJagan) - added the "ǖ", "ǘ", "ǚ", "ǜ" tones
+- [Manzolillom](https://github.com/Manzolillom) - added flexibility to switch between tones
 
 ## Additional features
 

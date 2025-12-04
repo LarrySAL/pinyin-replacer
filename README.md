@@ -34,15 +34,15 @@ To replace the vowel with its "toned" version, 4 commands/hotkeys have been adde
 
 The letter "v" can be used to produce the "ǖ", "ǘ", "ǚ", "ǜ" tones the same way as it works with the vowels.
 
-## Further Credit
-- [VishalJagan](https://github.com/VishalJagan) - added the "ǖ", "ǘ", "ǚ", "ǜ" tones
-- [Manzolillom](https://github.com/Manzolillom) - added flexibility to switch between tones
-
 ## Additional features
 
 Adds a status bar item to the status bar to remind you the order of the tones.
 
 ![](https://github.com/LarrySAL/pinyin-replacer/blob/master/resources/Status_bar_item.PNG)
+
+## Further Credit
+- [VishalJagan](https://github.com/VishalJagan) - added the "ǖ", "ǘ", "ǚ", "ǜ" tones
+- [Manzolillom](https://github.com/Manzolillom) - added flexibility to switch between tones
 
 ## Funding
 
